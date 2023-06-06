@@ -4,6 +4,9 @@ import Router from 'next/router';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 import '../styles.css';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
@@ -20,12 +23,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     });
   }, []);
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Head>
         <title>Plantilla Next.js | Avila Tek</title>
       </Head>
       <Component {...pageProps} />
-    </>
+    </QueryClientProvider>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card, Col, Form, Input, Row } from 'antd';
-import { useVPOS } from '../hooks/api/VPOS';
+import { useVPOS } from '../lib/api/VPOS';
 
 function VPOSPage() {
   const createMutation = useVPOS();
@@ -143,11 +143,15 @@ function VPOSPage() {
         </Form>
       </Card>
       <Card title="RESPONSE">
-        <TextArea
+        <input
+          className="w-full h-32 border"
+          type="textarea"
           value={loading ? 'Cargando...' : response}
           onChange={() => {}}
         />
-        <TextArea
+        <input
+          type="textarea"
+          className="w-full h-32 border"
           value={loading ? 'Cargando...' : response2}
           onChange={() => {}}
         />
