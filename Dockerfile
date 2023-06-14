@@ -4,8 +4,8 @@ FROM node:16-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm i -g npm@latest
-RUN npm set-script prepare ""
+#RUN npm i -g npm@latest
+# RUN npm set-script prepare ""
 RUN npm ci
 
 # Rebuild the source code only when needed
@@ -19,7 +19,7 @@ RUN npm run build
 # Production image, copy all the files and run next
 FROM node:16-alpine AS runner
 WORKDIR /app
-
+# COPY --from=builder /app/src/variables.env ./src/variables.env
 RUN npm i -g npm@latest
 
 ENV NODE_ENV production
